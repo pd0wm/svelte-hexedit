@@ -10,7 +10,7 @@
 
 <style>
 .my-grid {
-    --mdc-layout-grid-gutter-desktop: 0px;
+    overflow-y: scroll; /* Show vertical scrollbar */
 }
 </style>
 

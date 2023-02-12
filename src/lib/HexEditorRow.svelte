@@ -1,5 +1,5 @@
 <script>
-    import LayoutGrid, { Cell, InnerGrid } from '@smui/layout-grid';
+    import { Cell, InnerGrid } from '@smui/layout-grid';
     import AsciiBytes from './AsciiBytes.svelte';
     import HexBytes from './HexBytes.svelte';
 
