@@ -1,13 +1,11 @@
 <script>
-	import VirtualList from '@sveltejs/svelte-virtual-list';
-    import LayoutGrid, { Cell } from '@smui/layout-grid';
+    import VirtualList from 'svelte-tiny-virtual-list';
     import HexEditorRow from './HexEditorRow.svelte';
 
     export let data;
 
     let num_bytes = 16;
-    $: idx = [...Array(Math.ceil(data.byteLength / num_bytes)).keys()]
-    $: things = idx.map(x => {return {i: x}});
+    $: num_rows = Math.ceil(data.byteLength / num_bytes);
 </script>
 
 <style>
@@ -18,7 +16,9 @@
 
 
 <div class="my-grid">
-    <VirtualList height="1024px" items={things} let:item>
-        <HexEditorRow addr={item.i * num_bytes} data={data.slice(item.i * num_bytes, (item.i + 1) * num_bytes)}></HexEditorRow>
+    <VirtualList height={1024} itemCount={num_rows} itemSize={21} overscanCount={100}>
+        <div slot="item" let:index let:style {style}>
+            <HexEditorRow addr={index * num_bytes} data={data.slice(index * num_bytes, (index + 1) * num_bytes)}></HexEditorRow>
+        </div>
     </VirtualList>
 </div>

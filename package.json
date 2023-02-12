@@ -8,8 +8,8 @@
 		"preview": "vite preview"
 	},
 	"dependencies": {
-		"@sveltejs/svelte-virtual-list": "^3.0.1",
-		"svelte-material-ui": "^7.0.0-beta.0"
+		"svelte-material-ui": "^7.0.0-beta.0",
+		"svelte-tiny-virtual-list": "^2.0.5"
 	},
 	"devDependencies": {
 		"@smui/layout-grid": "^7.0.0-beta.0",
