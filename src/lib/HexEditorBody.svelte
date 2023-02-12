@@ -1,11 +1,13 @@
 <script>
+	import VirtualList from '@sveltejs/svelte-virtual-list';
     import LayoutGrid, { Cell } from '@smui/layout-grid';
     import HexEditorRow from './HexEditorRow.svelte';
 
     export let data;
 
     let num_bytes = 16;
-    $: num_blocks = Math.ceil(data.byteLength / num_bytes);
+    $: idx = [...Array(Math.ceil(data.byteLength / num_bytes)).keys()]
+    $: things = idx.map(x => {return {i: x}});
 </script>
 
 <style>
@@ -16,11 +18,7 @@
 
 
 <div class="my-grid">
-    <LayoutGrid>
-        {#each Array(num_blocks) as _, i}
-            <Cell span="12">
-                <HexEditorRow addr={i * num_bytes} data={data.slice(i * num_bytes, (i + 1) * num_bytes)}></HexEditorRow>
-            </Cell>
-        {/each}
-    </LayoutGrid>
+    <VirtualList height="1024px" items={things} let:item>
+        <HexEditorRow addr={item.i * num_bytes} data={data.slice(item.i * num_bytes, (item.i + 1) * num_bytes)}></HexEditorRow>
+    </VirtualList>
 </div>
