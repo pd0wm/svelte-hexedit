@@ -13,3 +13,7 @@ export function val_to_color(value) {
     return '#000000';
   }
 }
+
+export function range(start, end) {
+  return Array.from({ length: end - start + 1 }, (_, i) => start + i);
+}
