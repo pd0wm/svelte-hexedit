@@ -31,7 +31,7 @@
         {#if num_rows > 0}
             <div style="display:flex;flex-direction:column; height:{num_rows * row_height}px;position:relative;">
                 {#each rows as i}
-                    <div style="height={row_height}px;position:absolute;top:{i * row_height}px;display:block;">
+                    <div style="height={row_height}px;position:absolute;transform:translateY({i * row_height}px);;display:block;">
                         <HexEditorRow addr={i * num_bytes} data={data.slice(i * num_bytes, (i + 1) * num_bytes)}></HexEditorRow>
                     </div>
                 {/each}
